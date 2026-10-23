@@ -15,12 +15,12 @@
 
 ## 省 token 規則
 - 不要 Read `data/entries.js`、`data/weeks.js`（會越來越大）。新增內容用 `scripts/add.js`；需要查看資料時用 `add.js show/context/find`。
-- 新增教學內容：使用 `organize-inbox` skill。標籤管理：使用 `manage-tags` skill。
+- 建立 inbox 素材資料夾：使用 `create-folder` skill（`scripts/inbox.js`）。新增教學內容：使用 `organize-inbox` skill。標籤管理：使用 `manage-tags` skill。
 
 ## 檔案
 - `index.html`、`assets/app.js`、`assets/style.css`（Tactile 風格）、`assets/style-classic.css`（舊版樣式備份）
 - `data/entries.js` 每日內容、`data/weeks.js` 週總結、`data/tags.js` 標籤登記表
-- `scripts/add.js` 新增內容、`scripts/tags.js` 標籤管理、`scripts/lib.js` 兩者共用
+- `scripts/add.js` 新增內容、`scripts/tags.js` 標籤管理、`scripts/lib.js` 兩者共用、`scripts/inbox.js` 建立 inbox 資料夾
 - `inbox/` 原始素材（不上傳 GitHub）、`prompts/weekly-summary.md` 給網頁版 Claude 的週總結提示詞
 
 ## 注意

@@ -18,6 +18,15 @@ window.TAG_CONFIG = {
     { code: "2382", name: "廣達", aliases: [] },
     { code: "3231", name: "緯創", aliases: [] },
     { code: "3131", name: "弘塑", aliases: [] },
-    { code: "6187", name: "萬潤", aliases: [] }
+    { code: "6187", name: "萬潤", aliases: [] },
+    { code: "3105", name: "穩懋", aliases: [] },
+    { code: "2383", name: "台光電", aliases: ["台光"] },
+    { code: "1303", name: "南亞", aliases: [] },
+    { code: "6672", name: "騰輝電子-KY", aliases: ["騰輝", "騰輝-KY"] },
+    { code: "2408", name: "南亞科", aliases: [] },
+    { code: "2308", name: "台達電", aliases: ["台達"] },
+    { code: "2301", name: "光寶科", aliases: ["光寶"] },
+    { code: "2345", name: "智邦", aliases: [] },
+    { code: "6669", name: "緯穎", aliases: [] }
   ]
 };

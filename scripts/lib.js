@@ -78,10 +78,17 @@ const textOf = i => [i.title, i.summary, ...(i.points || []), i.quote,
   ...(i.sections || []).flatMap(s => [s.heading, ...(s.points || [])])].filter(Boolean).join('\n');
 
 // 內容提到哪些登記個股（代號需前後不是數字，避免 23300 誤判）
+// 名稱比對前先移除包含它的其他登記名稱，避免「南亞科」誤判成「南亞」
 function mentioned(text) {
   const hits = [];
+  const allWords = config.stocks.flatMap(s => [s.name, ...(s.aliases || [])].filter(Boolean).map(w => ({ s, w })));
   for (const s of config.stocks) {
-    const word = [s.name, ...(s.aliases || [])].find(a => a && text.includes(a));
+    const word = [s.name, ...(s.aliases || [])].find(a => {
+      if (!a) return false;
+      const t = allWords.filter(x => x.s !== s && x.w.length > a.length && x.w.includes(a))
+        .reduce((acc, x) => acc.split(x.w).join(''), text);
+      return t.includes(a);
+    });
     if (word) hits.push({ s, word });
     else if (new RegExp(`(^|\\D)${s.code}(\\D|$)`).test(text)) hits.push({ s, word: s.code });
   }
