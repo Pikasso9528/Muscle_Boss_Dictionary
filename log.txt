@@ -1,0 +1,14 @@
+# 老大教學字典 修改紀錄
+# 格式：[日期 時間] [類別] 內容（多行時後續行縮排）
+# 類別：內容 = 新增/修改教學資料（scripts/add.js 自動寫入）
+#       標籤 = 主題/個股標籤變更（scripts/tags.js 自動寫入）
+#       介面 = 網頁外觀與功能
+#       工具 = 腳本、skill、流程
+#       部署 = GitHub / Pages 相關
+# 新紀錄附加在檔案最後。
+
+[2026-10-23 18:24] [工具] 新增 log.txt 修改紀錄，從此開始記錄
+    scripts/add.js、scripts/tags.js 寫入資料時自動記錄（類別：內容、標籤）
+    介面與工具變更由 Claude Code 依 CLAUDE.md 規則手動記錄
+    目前狀態：UI 為 Tactile 果凍風格、日/週流水線、週末複習、密碼鎖未開啟、資料仍為範例假資料、尚未部署
+[2026-10-23 18:26] [部署] 建立本機 git repository（branch: main），完成第一次 commit；尚未推送到 GitHub

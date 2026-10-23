@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>老大教學字典</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Nunito:ital,wght@0,700;0,800;0,900;1,700&family=Noto+Sans+TC:wght@500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <div id="lock" class="lock" hidden>
+    <form id="lock-form" class="lock-card">
+      <h1>老大教學字典</h1>
+      <p>請輸入密碼</p>
+      <input id="lock-input" type="password" autocomplete="current-password" required>
+      <button type="submit">進入</button>
+      <p id="lock-error" class="lock-error" hidden>密碼錯誤</p>
+    </form>
+  </div>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#" id="brand">
+        <span class="brand-mark">師</span>
+        <span>
+          <strong>老大教學字典</strong>
+          <small id="stats"></small>
+        </span>
+      </a>
+      <div class="search">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="search" type="search" placeholder="搜尋關鍵字、個股…（按 / 聚焦）" autocomplete="off">
+      </div>
+      <button id="theme" class="icon-btn" title="切換深淺色" aria-label="切換深淺色">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+    </div>
+    <nav id="tag-bar" class="tag-bar" aria-label="分類篩選"></nav>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <section class="panel" id="calendar"></section>
+      <section class="panel">
+        <div class="panel-tabs" role="tablist">
+          <button class="tab is-active" data-tab="tags" role="tab">主題</button>
+          <button class="tab" data-tab="stocks" role="tab">個股</button>
+        </div>
+        <ul id="topic-list" class="topic-list"></ul>
+      </section>
+    </aside>
+
+    <main id="main" class="main">
+      <div id="filter-bar" class="filter-bar" hidden></div>
+      <div id="content"></div>
+    </main>
+  </div>
+
+  <script src="data/tags.js"></script>
+  <script src="data/weeks.js"></script>
+  <script src="data/entries.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
