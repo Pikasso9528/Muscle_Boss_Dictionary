@@ -109,3 +109,5 @@
 [2026-10-24 14:40] [介面] 週總結暫停：沒有週總結時隱藏日曆週次欄與日/週切換，有週總結時自動恢復
     assets/app.js（hasWeeks）、style.css / style-classic.css 新增 .cal-grid.no-wk；CLAUDE.md 註記週總結暫停
 [2026-10-24 14:49] [介面] 開啟密碼鎖（assets/app.js lockEnabled: true，存 SHA-256 雜湊，不存明文）
+[2026-10-24 14:51] [部署] 推送到 GitHub（Pikasso9528/Muscle_Boss_Dictionary，公開）並開啟 GitHub Pages（main 根目錄）
+    網址：https://pikasso9528.github.io/Muscle_Boss_Dictionary/
