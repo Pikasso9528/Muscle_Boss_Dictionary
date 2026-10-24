@@ -113,3 +113,5 @@
     網址：https://pikasso9528.github.io/Muscle_Boss_Dictionary/
 [2026-10-24 15:07] [介面] 支援加入手機主畫面：App 圖示、全螢幕模式、狀態列顏色
     新增 manifest.json、favicon.ico、assets/icons/（180/192/512/32 px，果凍風「師」字）；index.html 加入 apple-touch-icon 等設定
+[2026-10-24 15:15] [介面] 左上角標誌與 App 圖示由「師」改為「運」
+    index.html brand-mark、assets/icons/、favicon.ico 重新產生

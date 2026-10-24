@@ -19,7 +19,7 @@
 
 ## 檔案
 - `index.html`、`assets/app.js`、`assets/style.css`（Tactile 風格）、`assets/style-classic.css`（舊版樣式備份）
-- `manifest.json`、`favicon.ico`、`assets/icons/` 加入主畫面用的 App 設定與圖示（圖示為果凍風「師」字）
+- `manifest.json`、`favicon.ico`、`assets/icons/` 加入主畫面用的 App 設定與圖示（圖示為果凍風「運」字）
 - `data/entries.js` 每日內容、`data/weeks.js` 週總結、`data/tags.js` 標籤登記表
 - `scripts/add.js` 新增內容、`scripts/tags.js` 標籤管理、`scripts/lib.js` 兩者共用、`scripts/inbox.js` 建立 inbox 資料夾
 - `inbox/` 原始素材（不上傳 GitHub）、`prompts/weekly-summary.md` 給網頁版 Claude 的週總結提示詞
