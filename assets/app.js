@@ -3,8 +3,8 @@
 
   // 密碼鎖：lockEnabled 設 true 並填入密碼的 SHA-256 hash 即啟用（僅防一般瀏覽）
   const CONFIG = {
-    lockEnabled: false,
-    passwordHash: ''
+    lockEnabled: true,
+    passwordHash: 'd923700040b2271bcefb62d6823d40628a3a9a91d9a9b3c86d45a3b0e0a69b50'
   };
 
   // 主題標籤與顏色來自 data/tags.js；每個主題產生 .tag-N 的顏色變數
