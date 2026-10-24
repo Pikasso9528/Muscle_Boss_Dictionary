@@ -106,3 +106,5 @@
       更新 [直播] Q&A：HVDC、美股均線與轉型驗證（⚠ 未登記個股 3714 富采）
       更新 [直播] 緯穎分割、CPO 時程與 PTFE
       更新 [直播] 被動元件、封測與載板展望
+[2026-10-24 14:40] [介面] 週總結暫停：沒有週總結時隱藏日曆週次欄與日/週切換，有週總結時自動恢復
+    assets/app.js（hasWeeks）、style.css / style-classic.css 新增 .cal-grid.no-wk；CLAUDE.md 註記週總結暫停

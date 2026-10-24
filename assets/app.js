@@ -28,6 +28,7 @@
   const weeks = (window.WEEKS || []).map(w => ({ ...w, end: w.end || addDays(w.start, 6) }))
     .sort((a, b) => b.start.localeCompare(a.start));
   const byWeek = new Map(weeks.map(w => [w.start, w]));
+  const hasWeeks = weeks.length > 0;  // 沒有週總結時隱藏週次欄與日/週切換
 
   const itemsOf = e => [
     ...(e.group || []).map(i => ({ ...i, kind: 'group' })),
@@ -138,7 +139,7 @@
       const wCls = ['cal-wk'];
       if (w) wCls.push('has');
       if (w && state.view === 'week' && state.openWeeks.has(mondayStr)) wCls.push('is-selected');
-      cells += `<button class="${wCls.join(' ')}" data-week="${mondayStr}" title="${w ? esc(w.title) : '第 ' + isoWeek(mondayStr) + ' 週（無週總結）'}">
+      if (hasWeeks) cells += `<button class="${wCls.join(' ')}" data-week="${mondayStr}" title="${w ? esc(w.title) : '第 ' + isoWeek(mondayStr) + ' 週（無週總結）'}">
         <span>${isoWeek(mondayStr)}</span>${w ? '<i class="cal-dot"></i>' : ''}</button>`;
       for (let c = 0; c < 7; c++) {
         const d = row * 7 - offset + c + 1;
@@ -169,8 +170,8 @@
         </div>
         <button class="icon-btn sm" data-cal="1" aria-label="下個月">›</button>
       </div>
-      <div class="cal-grid cal-week"><span>週</span>${[...CAL_WEEK].map(w => `<span>${w}</span>`).join('')}</div>
-      <div class="cal-grid">${cells}</div>
+      <div class="cal-grid cal-week${hasWeeks ? '' : ' no-wk'}">${hasWeeks ? '<span>週</span>' : ''}${[...CAL_WEEK].map(w => `<span>${w}</span>`).join('')}</div>
+      <div class="cal-grid${hasWeeks ? '' : ' no-wk'}">${cells}</div>
       <div class="cal-foot">
         <span><i class="cal-dot"></i>教學</span>
         <span><i class="cal-live">${ICON_LIVE}</i>直播</span>
@@ -237,6 +238,7 @@
   }
 
   function renderViewToggle() {
+    if (!hasWeeks) return '';
     return `<div class="view-toggle" role="tablist" aria-label="切換日/週流水線">
       <button class="tab ${state.view === 'day' ? 'is-active' : ''}" data-view="day">日</button>
       <button class="tab ${state.view === 'week' ? 'is-active' : ''}" data-view="week">週</button>
@@ -470,6 +472,7 @@
   }
 
   function goWeek(start) {
+    if (!hasWeeks) return;
     const w = byWeek.get(start);
     resetSearch();
     state.view = 'week';

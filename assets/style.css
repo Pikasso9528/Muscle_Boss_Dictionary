@@ -231,6 +231,7 @@ mark { background: var(--mark); color: inherit; border-radius: 6px; padding: 0 3
 .cal-title strong { display: block; font-size: 20px; font-weight: 900; }
 .cal-title small { color: var(--muted); font-size: 12px; }
 .cal-grid { display: grid; grid-template-columns: 26px repeat(7, 1fr); gap: 4px; }
+.cal-grid.no-wk { grid-template-columns: repeat(7, 1fr); }
 .cal-wk {
   position: relative; border: 0; background: transparent; border-radius: 10px; margin: 3px 0;
   display: flex; align-items: center; justify-content: center;
