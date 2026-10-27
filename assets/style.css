@@ -4,6 +4,7 @@
   --chrome: #C0C0C0;
   --pink: #FF9ECD;
   --blue: #87CEEB;
+  --lavender: #C4B2FF;
 
   --bg: #d4d4d4;
   --bg-grad: linear-gradient(160deg, #e5e5e5 0%, #c9c9cc 55%, #a3a3a3 100%);
@@ -24,6 +25,9 @@
   --jelly-review: linear-gradient(135deg, rgba(252, 252, 255, .92), rgba(192, 192, 192, .85) 55%, rgba(236, 236, 242, .92));
   --jelly-week: linear-gradient(135deg, rgba(255, 158, 205, .62), rgba(135, 206, 235, .55) 55%, rgba(192, 192, 192, .7));
   --review: #55575f;
+  --msbk: #6a4fc4;               /* 薰衣草紫的深色版 */
+  --msbk-soft: rgba(196, 178, 255, .5);
+  --jelly-msbk: linear-gradient(135deg, rgba(196, 178, 255, .8), rgba(192, 192, 192, .7));
   --btn: linear-gradient(180deg, #ffffff, #e5e5e5);
 
   --sh-jelly: inset 0 2px 8px rgba(255, 255, 255, .6), 0 20px 40px -15px rgba(0, 0, 0, .4);
@@ -62,6 +66,9 @@
     --jelly-review: linear-gradient(135deg, rgba(230, 230, 240, .2), rgba(192, 192, 192, .07));
     --jelly-week: linear-gradient(135deg, rgba(255, 158, 205, .26), rgba(135, 206, 235, .22) 55%, rgba(192, 192, 192, .08));
     --review: #d4d6de;
+    --msbk: #C4B2FF;
+    --msbk-soft: rgba(196, 178, 255, .2);
+    --jelly-msbk: linear-gradient(135deg, rgba(196, 178, 255, .28), rgba(192, 192, 192, .1));
     --btn: linear-gradient(180deg, rgba(255, 255, 255, .16), rgba(255, 255, 255, .05));
     --sh-jelly: inset 0 2px 8px rgba(255, 255, 255, .12), 0 20px 40px -15px rgba(0, 0, 0, .7);
     --sh-soft: inset 0 1px 4px rgba(255, 255, 255, .1), 0 10px 24px -14px rgba(0, 0, 0, .6);
@@ -91,6 +98,9 @@
   --jelly-review: linear-gradient(135deg, rgba(230, 230, 240, .2), rgba(192, 192, 192, .07));
   --jelly-week: linear-gradient(135deg, rgba(255, 158, 205, .26), rgba(135, 206, 235, .22) 55%, rgba(192, 192, 192, .08));
   --review: #d4d6de;
+  --msbk: #C4B2FF;
+  --msbk-soft: rgba(196, 178, 255, .2);
+  --jelly-msbk: linear-gradient(135deg, rgba(196, 178, 255, .28), rgba(192, 192, 192, .1));
   --btn: linear-gradient(180deg, rgba(255, 255, 255, .16), rgba(255, 255, 255, .05));
   --sh-jelly: inset 0 2px 8px rgba(255, 255, 255, .12), 0 20px 40px -15px rgba(0, 0, 0, .7);
   --sh-soft: inset 0 1px 4px rgba(255, 255, 255, .1), 0 10px 24px -14px rgba(0, 0, 0, .6);
@@ -273,6 +283,11 @@ mark { background: var(--mark); color: inherit; border-radius: 6px; padding: 0 3
   position: absolute; top: -3px; left: -3px; font-size: 10px; padding: 2px;
   background: linear-gradient(135deg, #fff, var(--chrome)); color: #3c3d45; border-radius: 50%; box-shadow: 0 2px 4px rgba(0, 0, 0, .25);
 }
+.cal-msbk { display: inline-flex; color: var(--msbk); font-size: 12px; }
+.cal-cell .cal-msbk {
+  position: absolute; bottom: -3px; right: -3px; font-size: 10px; padding: 2px;
+  background: linear-gradient(135deg, #fff, var(--lavender)); color: #3d2a85; border-radius: 50%; box-shadow: 0 2px 4px rgba(0, 0, 0, .25);
+}
 .cal-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 12px; font-size: 12px; color: var(--muted); }
 .cal-foot span { display: inline-flex; align-items: center; gap: 4px; }
 .cal-foot .cal-dot { width: 10px; height: 10px; background: linear-gradient(135deg, var(--pink), var(--chrome)); border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
@@ -354,6 +369,7 @@ mark { background: var(--mark); color: inherit; border-radius: 6px; padding: 0 3
 .badge span { font-size: 11px; font-weight: 800; }
 .live-badge { color: #12455f; background: linear-gradient(135deg, #c8ecfa, var(--blue)); animation: pulse 2.4s var(--spring) infinite; }
 .review-badge { color: #3c3d45; background: linear-gradient(135deg, #ffffff, var(--chrome)); }
+.msbk-badge { color: #3d2a85; background: linear-gradient(135deg, #ece6ff, var(--lavender)); }
 @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
 .chev { width: 20px; height: 20px; fill: none; stroke: var(--text); stroke-width: 2.4; flex: none; transition: transform 400ms var(--spring); opacity: .6; }
 .node.is-open .node-head .chev { transform: rotate(180deg); }
@@ -390,7 +406,7 @@ mark { background: var(--mark); color: inherit; border-radius: 6px; padding: 0 3
 /* ---------- month nav ---------- */
 .month-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; }
 
-/* ---------- 可展開區塊：直播（清爽藍）/ 週末複習（鉻銀） ---------- */
+/* ---------- 可展開區塊：直播（清爽藍）/ 週末複習（鉻銀）/ MSBK（薰衣草紫） ---------- */
 .fold {
   --fc: var(--live); --fi: radial-gradient(circle at 30% 28%, #fff 0 12%, var(--blue) 55%, #4f9cbd); --fi-c: #0e3b52;
   margin-top: 16px; background: var(--jelly-live); border-radius: 2rem;
@@ -399,6 +415,10 @@ mark { background: var(--mark); color: inherit; border-radius: 6px; padding: 0 3
 .fold.review {
   --fc: var(--review); --fi: radial-gradient(circle at 30% 28%, #fff 0 14%, #dcdce2 45%, #8d8d96); --fi-c: #34343c;
   background: var(--jelly-review);
+}
+.fold.msbk {
+  --fc: var(--msbk); --fi: radial-gradient(circle at 30% 28%, #fff 0 12%, var(--lavender) 55%, #8c74d9); --fi-c: #2e1f6b;
+  background: var(--jelly-msbk);
 }
 .fold summary { list-style: none; display: flex; align-items: center; gap: 12px; padding: 12px 18px; cursor: pointer; }
 .fold summary::-webkit-details-marker { display: none; }
@@ -417,6 +437,7 @@ mark { background: var(--mark); color: inherit; border-radius: 6px; padding: 0 3
 .fold-body { padding: 0 20px 10px; }
 .fold .item li::marker { color: var(--fc); }
 .fold.live .item blockquote { background: linear-gradient(135deg, rgba(135, 206, 235, .4), rgba(255, 255, 255, .3)); }
+.fold.msbk .item blockquote { background: linear-gradient(135deg, rgba(196, 178, 255, .45), rgba(255, 255, 255, .3)); }
 .fold.review .item blockquote { background: linear-gradient(135deg, rgba(192, 192, 192, .55), rgba(255, 255, 255, .35)); }
 
 /* 複習來源 / 本週紀錄的日期連結 */
@@ -453,6 +474,7 @@ mark { background: var(--mark); color: inherit; border-radius: 6px; padding: 0 3
 .kind-tag { display: inline-flex; align-items: center; gap: 3px; padding: 0 8px; border-radius: 999px; }
 .kind-tag.live { color: var(--live); background: var(--live-soft); }
 .kind-tag.review { color: var(--review); background: rgba(192, 192, 192, .4); }
+.kind-tag.msbk { color: var(--msbk); background: var(--msbk-soft); }
 .kind-tag.week { color: var(--accent); background: var(--accent-soft); }
 .result-title { font: 900 18px var(--font-head); }
 .result-snippet { font-size: 14px; color: var(--muted); }

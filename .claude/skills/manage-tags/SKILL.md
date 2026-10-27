@@ -7,7 +7,7 @@ description: 新增、移除、改名老大教學字典的主題標籤或個股�
 
 ## 檔案
 - `data/tags.js`：標籤登記表（主題與顏色、個股代號/名稱/別名）。網站從這裡讀主題順序與顏色。
-- `data/entries.js`：每日內容，包含群組教學 `group`、語音直播 `live`、週末複習 `review`。每則都有 `tags`（主題）與 `stocks`（個股，格式固定為「代號 名稱」，如 `2330 台積電`）。
+- `data/entries.js`：每日內容，包含群組教學 `group`、語音直播 `live`、週末複習 `review`、MSBK 圖文教學 `msbk`。每則都有 `tags`（主題）與 `stocks`（個股，格式固定為「代號 名稱」，如 `2330 台積電`）。
 - `data/weeks.js`：週總結，每週一筆，也有 `tags` 與 `stocks`。腳本的所有指令都會一併處理日資料與週總結。
 - `scripts/tags.js`：所有操作都透過它執行，它會同步修改這些檔案。**不要手動逐筆改 entries.js 的標籤，也不要 Read `entries.js`／`weeks.js`**（檔案會越來越大，浪費 token）。要看某天內容，用 `node scripts/add.js show <日期>`；要找某個詞出現在哪些天，用 `node scripts/add.js find <關鍵字>`。
 

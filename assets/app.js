@@ -20,6 +20,7 @@
   const ICON_LIVE = svg('<path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1v-6h3zM3 19a2 2 0 0 0 2 2h1v-6H3z"/>');
   const ICON_CHAT = svg('<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>');
   const ICON_BOOK = svg('<path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/>');
+  const ICON_GLASSES = svg('<circle cx="6" cy="15" r="3.5"/><circle cx="18" cy="15" r="3.5"/><path d="M9.5 15a2.5 2.5 0 0 1 5 0M2.5 14.5 4 8a2 2 0 0 1 2-1.5M21.5 14.5 20 8a2 2 0 0 0-2-1.5"/>');
   const ICON_WEEK = svg('<rect x="3" y="4" width="18" height="17" rx="3"/><path d="M3 9h18M8 2v4M16 2v4M7 14h10"/>');
   const ICON_CHEVRON = '<svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
 
@@ -33,7 +34,8 @@
   const itemsOf = e => [
     ...(e.group || []).map(i => ({ ...i, kind: 'group' })),
     ...(e.live || []).map(i => ({ ...i, kind: 'live' })),
-    ...(e.review || []).map(i => ({ ...i, kind: 'review' }))
+    ...(e.review || []).map(i => ({ ...i, kind: 'review' })),
+    ...(e.msbk || []).map(i => ({ ...i, kind: 'msbk' }))
   ];
   // 漏寫當天概要時，以第一則內容的標題代替
   for (const e of entries) if (!e.title) e.title = (itemsOf(e)[0] || {}).title || e.date;
@@ -111,6 +113,7 @@
     const count = k => entries.reduce((n, e) => n + (e[k] || []).length, 0);
     const parts = [`${entries.length} 天`, `${count('group')} 則教學`, `${count('live')} 場直播`];
     if (count('review')) parts.push(`${count('review')} 則複習`);
+    if (count('msbk')) parts.push(`${count('msbk')} 則 MSBK`);
     if (weeks.length) parts.push(`${weeks.length} 週總結`);
     $('#stats').textContent = parts.join(' · ');
   }
@@ -148,14 +151,16 @@
         const e = byDate.get(ds);
         const hasLive = e && (e.live || []).length;
         const hasReview = e && (e.review || []).length;
+        const hasMsbk = e && (e.msbk || []).length;
         const cls = ['cal-cell'];
         if (e) cls.push('has');
         if (hasLive) cls.push('has-live');
         if (hasReview) cls.push('has-review');
+        if (hasMsbk) cls.push('has-msbk');
         if (ds === state.date) cls.push('is-selected');
         if (ds === todayStr) cls.push('is-today');
         cells += `<button class="${cls.join(' ')}" data-date="${ds}" title="${e ? esc(e.title) : '無紀錄'}">
-          <span>${d}</span>${e ? '<i class="cal-dot"></i>' : ''}${hasLive ? '<i class="cal-live">' + ICON_LIVE + '</i>' : ''}${hasReview ? '<i class="cal-review">' + ICON_BOOK + '</i>' : ''}
+          <span>${d}</span>${e ? '<i class="cal-dot"></i>' : ''}${hasLive ? '<i class="cal-live">' + ICON_LIVE + '</i>' : ''}${hasReview ? '<i class="cal-review">' + ICON_BOOK + '</i>' : ''}${hasMsbk ? '<i class="cal-msbk">' + ICON_GLASSES + '</i>' : ''}
         </button>`;
       }
     }
@@ -176,6 +181,7 @@
         <span><i class="cal-dot"></i>教學</span>
         <span><i class="cal-live">${ICON_LIVE}</i>直播</span>
         <span><i class="cal-review">${ICON_BOOK}</i>複習</span>
+        <span><i class="cal-msbk">${ICON_GLASSES}</i>MSBK</span>
         <button class="link-btn" data-cal="latest">回到最新</button>
       </div>`;
   }
@@ -269,7 +275,7 @@
     </article>`;
   }
 
-  // 直播、複習共用的可展開區塊
+  // 直播、複習、MSBK 共用的可展開區塊
   function renderFold(cls, icon, label, item, extra = '') {
     return `<details class="fold ${cls}">
       <summary>
@@ -287,6 +293,7 @@
     const group = e.group || [];
     const live = e.live || [];
     const review = e.review || [];
+    const msbk = e.msbk || [];
     const headTags = [...tagsOf(e)].map(t => `<span class="chip sm ${tagClass(t)}">${esc(t)}</span>`).join('');
     const badge = (cls, icon, n, title) => n
       ? `<span class="badge ${cls}" title="${title}">${icon}<span>${n > 1 ? n : ''}</span></span>` : '';
@@ -299,7 +306,8 @@
       ${live.map(l => renderFold('live', ICON_LIVE, '語音直播' + (l.time ? ' · ' + esc(l.time) : ''), l)).join('')}
       ${review.map(r => renderFold('review', ICON_BOOK, '週末複習', r,
         (r.refs || []).length ? `<div class="refs"><span class="muted">複習自</span>${r.refs.map(ds =>
-          `<button class="chip sm" data-jump="${ds}">${md(ds)}${byDate.has(ds) ? ' ' + esc(byDate.get(ds).title) : ''}</button>`).join('')}</div>` : '')).join('')}`;
+          `<button class="chip sm" data-jump="${ds}">${md(ds)}${byDate.has(ds) ? ' ' + esc(byDate.get(ds).title) : ''}</button>`).join('')}</div>` : '')).join('')}
+      ${msbk.map(i => renderFold('msbk', ICON_GLASSES, 'MSBK 圖文教學', i)).join('')}`;
 
     return `<li class="node ${open ? 'is-open' : ''}" id="d-${e.date}">
       <span class="node-dot ${live.length ? 'has-live' : ''}"></span>
@@ -311,6 +319,7 @@
         </span>
         ${badge('live-badge', ICON_LIVE, live.length, '有語音直播')}
         ${badge('review-badge', ICON_BOOK, review.length, '有週末複習')}
+        ${badge('msbk-badge', ICON_GLASSES, msbk.length, '有 MSBK 圖文教學')}
         ${ICON_CHEVRON}
       </button>
       <div class="node-body">${open ? body : ''}</div>
@@ -420,6 +429,7 @@
     const kindTag = {
       live: `<span class="kind-tag live">${ICON_LIVE}直播</span>`,
       review: `<span class="kind-tag review">${ICON_BOOK}複習</span>`,
+      msbk: `<span class="kind-tag msbk">${ICON_GLASSES}MSBK</span>`,
       week: `<span class="kind-tag week">${ICON_WEEK}週總結</span>`
     };
     return `<div class="search-head"><strong>「${esc(raw)}」</strong> 共 ${results.length} 筆結果</div>` +

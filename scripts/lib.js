@@ -66,7 +66,7 @@ const saveContent = () => {
 };
 
 // ---------- 共用 ----------
-const KINDS = { group: '群組', live: '直播', review: '複習' };
+const KINDS = { group: '群組', live: '直播', review: '複習', msbk: 'MSBK' };
 const label = s => `${s.code} ${s.name}`;
 function* eachItem() {
   for (const e of entries) {

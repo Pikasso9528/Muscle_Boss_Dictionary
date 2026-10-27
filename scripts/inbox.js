@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// inbox 資料夾工具：建立正確的素材資料夾架構（日期／直播／複習／週總結）
+// inbox 資料夾工具：建立正確的素材資料夾架構（日期／直播／複習／MSBK／週總結）
 // 用法：node scripts/inbox.js new [日期] [類型...]，不帶參數會列出用法
 'use strict';
 
@@ -7,7 +7,7 @@ const fs = require('fs');
 const path = require('path');
 
 const INBOX = path.join(__dirname, '..', 'inbox');
-const TYPES = { group: '群組', live: '直播', review: '複習', week: '週總結' };
+const TYPES = { group: '群組', live: '直播', review: '複習', msbk: 'MSBK', week: '週總結' };
 
 function die(msg) {
   console.error('✖ ' + msg);
@@ -81,7 +81,7 @@ function cmdList() {
       continue;
     }
     const parts = [];
-    for (const [t, sub] of [['group', ''], ['live', 'live'], ['review', 'review']]) {
+    for (const [t, sub] of [['group', ''], ['live', 'live'], ['review', 'review'], ['msbk', 'msbk']]) {
       const f = files(path.join(dir, sub)).filter(n => n !== 'entry.json');
       if (f.length) parts.push(`${TYPES[t]} ${f.length} 檔（${f.join('、')}）`);
     }
@@ -97,7 +97,7 @@ else {
   console.log(`inbox 資料夾工具
   new [日期] [類型...]    建立素材資料夾
     日期：YYYY-MM-DD、M/D（今年）或 today，省略 = 今天
-    類型：group 群組（預設）、live 直播、review 複習、week 週總結，可多個
+    類型：group 群組（預設）、live 直播、review 複習、msbk MSBK 圖文教學、week 週總結，可多個
   list                    列出待處理素材（不含 _done/）
   例：node scripts/inbox.js new 2026-10-23 live review`);
 }

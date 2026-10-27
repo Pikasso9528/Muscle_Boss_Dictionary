@@ -1,6 +1,6 @@
 ---
 name: organize-inbox
-description: 把 inbox/ 裡的群組截圖、.txt、直播、週末複習與週總結素材整理成老大教學字典的內容（data/entries.js、data/weeks.js）。當使用者說「整理 inbox」「新增內容」「上傳了截圖」「補登某天」「整理週總結」「產生週總結」時使用。
+description: 把 inbox/ 裡的群組截圖、.txt、直播、週末複習、MSBK 圖文教學與週總結素材整理成老大教學字典的內容（data/entries.js、data/weeks.js）。當使用者說「整理 inbox」「新增內容」「上傳了截圖」「補登某天」「整理週總結」「產生週總結」時使用。
 ---
 
 # 整理 inbox
@@ -19,6 +19,7 @@ inbox/
   2026-10-23/            群組教學：截圖 *.png/*.jpg 或 *.txt
     live/                語音直播
     review/              週末複習
+    msbk/                MSBK 圖文教學（肌肉書僮的教學手冊等圖文素材）
   weeks/
     2026-10-19.txt       網頁版 Claude 整理的週總結（檔名 = 週一日期）
   _done/                 已處理的素材（整理完移到這裡）
@@ -49,6 +50,7 @@ inbox/
 - `tags`：只用 `data/tags.js` 裡的主題，可複選。
 - `stocks`：格式為「代號 名稱」，例如 `2330 台積電`。內容提到的登記個股，腳本會自動補上。
 - 直播（`live`）：截圖或 .txt 有時間就填 `time`（例如 `"21:00"`）。
+- MSBK（`msbk`）：圖文教學手冊，按章節或重點拆成多則；不是語音直播，不要放進 `live`。
 - 複習（`review`）：先用 `find` 找出這次複習對應的原始教學日期，填進 `refs`。
 
 ## JSON 格式
@@ -59,7 +61,8 @@ inbox/
   "title": "當天一句話概要",
   "group":  [{ "title": "", "tags": [], "stocks": [], "summary": "", "points": [], "quote": "" }],
   "live":   [{ "title": "", "time": "21:00", "tags": [], "stocks": [], "summary": "", "points": [] }],
-  "review": [{ "title": "", "refs": ["2026-10-14"], "tags": [], "stocks": [], "summary": "", "points": [] }]
+  "review": [{ "title": "", "refs": ["2026-10-14"], "tags": [], "stocks": [], "summary": "", "points": [] }],
+  "msbk":   [{ "title": "", "tags": [], "stocks": [], "summary": "", "points": [] }]
 }
 ```
 週總結（`inbox/weeks/<週一>.json`）。`start` 必須是週一，`end` 可省略。同一週再新增會覆蓋。
