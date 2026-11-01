@@ -35,6 +35,13 @@ window.TAG_CONFIG = {
     { code: "2303", name: "聯電", aliases: [] },
     { code: "3711", name: "日月光投控", aliases: ["日月光"] },
     { code: "8039", name: "台虹", aliases: [] },
-    { code: "6274", name: "台燿", aliases: [] }
+    { code: "6274", name: "台燿", aliases: [] },
+    { code: "8358", name: "金居", aliases: [] },
+    { code: "3661", name: "世芯-KY", aliases: ["世芯"] },
+    { code: "3443", name: "創意", aliases: [] },
+    { code: "3081", name: "聯亞", aliases: [] },
+    { code: "4749", name: "新應材", aliases: [] },
+    { code: "3163", name: "波若威", aliases: [] },
+    { code: "3595", name: "山太士", aliases: [] }
   ]
 };
